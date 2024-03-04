@@ -1,19 +1,6 @@
 # submission
 ## [Final Project Data Analytics] : Air Quality Datasets Analysis
 
-## Setup environment
-```
-conda create --name main-ds python=3.9
-conda activate main-ds
-pip install numpy pandas scipy matplotlib seaborn jupyter streamlit babel
-```
-
-## Run steamlit app
-```
-streamlit run dashboard.py
-```
-Certainly! Here's a more organized and paraphrased version:
-
 ## Getting Started
 ---
 ### For the Jupyter Notebook:
@@ -29,6 +16,11 @@ Certainly! Here's a more organized and paraphrased version:
 3. Navigate to the project directory in the terminal.
 4. Run the Streamlit app with `streamlit run dashboard.py`.
 5. Alternatively, access the Streamlit website using the provided URL in the `url.txt` file.
+
+## Run steamlit app
+```
+streamlit run dashboard.py
+```
 
 Feel free to reach out if you need further assistance!
 Install Streamlit with command pip install streamlit, then type command in terminal streamlit run dashboard.py or you can access the streamlit website using the link in the url.txt
