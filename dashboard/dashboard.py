@@ -196,7 +196,7 @@ if station_name:
 # Display selected question and visualization
 if StudyCase == "Question 1":
     st.subheader("Question 1: ")
-    st.subheader("How did the air quality conditions change based on the PM2.5 data each month in 2015 at the Changping Station?")
+    st.subheader("How did the air quality conditions change based on the PM10 data each month in 2015 at the Changping Station?")
     #st.write("")
     Case1()
 
