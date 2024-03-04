@@ -166,7 +166,7 @@ with st.sidebar.expander("Select Features to be shown"):
 with st.sidebar.expander("Select a StudyCase"):
     custom_StudyCases_selector = st.selectbox(
         "",
-        ["StudyCase 1: PM2.5 data each month in 2015 at Changping Station",
+        ["StudyCase 1: PM10 data each month in 2015 at Changping Station",
          "StudyCase 2: Carbon monoxide levels in the air at Changping and Dongsi Stations",
          "StudyCase 3: Air pollution levels (PM2.5 and PM10) and air temperature (TEMP) at Dongsi Station"],
         key="StudyCases_selector",
