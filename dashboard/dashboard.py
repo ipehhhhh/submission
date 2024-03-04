@@ -146,39 +146,31 @@ def Case3():
     st.subheader("Conclusion for Question 3:")
     st.write("The correlation or relationship between air quality, represented by the PM2.5 and PM10 features, and temperature demonstrates a negative correlation.")
 
+
 # Sidebar layout
 st.sidebar.title("Options")
 
-# Data Distribution Display
-def display_data_hist(data):
-    """
-    Display the distribution of the selected data.
-
-    Parameters:
-        data (DataFrame): The DataFrame containing the data to be displayed.
-    """
-    st.subheader("Data Distribution:")
-    st.text(data.describe())
-
-# Data Description
-def display_data_description(data):
-    """
-    Display the description of the selected data.
-
-    Parameters:
-        data (DataFrame): The DataFrame containing the data to be displayed.
-    """
-    st.subheader("Data Description:")
-    st.text(data.describe())
-
 # Select Dabase from Station
 st.sidebar.header("Sort Data")
-station_name = st.sidebar.radio("Select Data", ("Changping", "Dongsi"))
-dataFeatures = st.sidebar.multiselect("Select Columns to Display", Changping_df.columns)
+station_name = st.sidebar.radio("Select Data", ("Changping", "Dongsi"), key="station_selector")
 
-# Feature 2: Question and Visualization
-st.sidebar.header("Explore Data")
-StudyCase = st.sidebar.selectbox("Select a Question", ("Question 1", "Question 2", "Question 3"))
+# Style the multiselect for selecting columns
+with st.sidebar.expander("Select Features to be shown"):
+    custom_feature_selector = st.multiselect(
+        "Select Features to be shown",
+        Changping_df.columns,
+        key="feature_selector",
+    )
+
+# Style the selectbox for selecting StudyCases
+with st.sidebar.expander("Select a StudyCase"):
+    custom_StudyCases_selector = st.selectbox(
+        "",
+        ["StudyCase 1: PM2.5 data each month in 2015 at Changping Station",
+         "StudyCase 2: Carbon monoxide levels in the air at Changping and Dongsi Stations",
+         "StudyCase 3: Air pollution levels (PM2.5 and PM10) and air temperature (TEMP) at Dongsi Station"],
+        key="StudyCases_selector",
+    )
 
 # Main content
 st.title("Air Quality Analysis")
@@ -191,37 +183,36 @@ else:
 # Display sorted data or selected function
 if station_name:
     st.subheader("Selected Data:")
-    st.write(dataframe[dataFeatures])
+    st.write(dataframe[custom_feature_selector])
 
-# Display selected question and visualization
-if StudyCase == "Question 1":
-    st.subheader("Question 1: ")
+# Display selected StudyCase and visualization
+if custom_StudyCases_selector == "StudyCase 1: PM10 data each month in 2015 at Changping Station":
+    st.subheader("StudyCase 1: ")
     st.subheader("How did the air quality conditions change based on the PM10 data each month in 2015 at the Changping Station?")
-    #st.write("")
     Case1()
 
-elif StudyCase == "Question 2":
-    st.subheader("Question 2:")
+elif custom_StudyCases_selector == "StudyCase 2: Carbon monoxide levels in the air at Changping and Dongsi Stations":
+    st.subheader("StudyCase 2:")
     st.subheader("How is the comparison of carbon monoxide levels in the air at Changping Station and Dongsi Station?")
-    #st.write("Is there a correlation between operating hours and air quality based on PM 2.5 and O3 levels?")
     Case2()
 
-elif StudyCase == "Question 3":
-    st.subheader("Question 3: ")
+elif custom_StudyCases_selector == "StudyCase 3: Air pollution levels (PM2.5 and PM10) and air temperature (TEMP) at Dongsi Station":
+    st.subheader("StudyCase 3: ")
     st.subheader("What is the correlation between air pollution levels (represented by PM2.5 and PM10) and air temperature (TEMP) from November 2014 to January 2015 at Dongsi Station?")
-    #st.write("How does the O3 level vary from year to year at Changping and Dongsi stations?")
     Case3()
 
 # Feature 3: Data Info
 st.sidebar.header("Data Info")
-dataInfo = st.sidebar.selectbox("View Data Info", ("Data Distribution", "Data Description"))
+data_info_selector = st.sidebar.selectbox(
+    "View Data Info",
+    ("Data Distribution", "Data Description"),
+    key="data_info_selector",
+)
 
-if dataInfo == "Data Distribution":
+if data_info_selector == "Data Distribution":
     st.subheader("Data Distribution:")
     st.write(dataframe)
 
-elif dataInfo == "Data Description":
+elif data_info_selector == "Data Description":
     st.subheader("Data Description:")
     st.dataframe(dataframe.describe().round(2))
-
-
